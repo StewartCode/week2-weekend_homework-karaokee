@@ -1,5 +1,5 @@
-require_relative("song")
-require_relative("person")
+# require_relative("song")
+#require_relative("karaoke")
 require("pry")
 
 class Room
@@ -14,15 +14,18 @@ class Room
   end
 
 def person_enters_room(person, room)
+  gate = true
   array_check = @room_array.reduce {|x , y| x + y}
     array = []
     for x in array_check
        if x == person.name
-         return "that person is already in a room"
+         puts "that person is already in a room"
       else end
     end
     if @room_array[room].length >= 4
-      return "room full sorry"
+         print %x{clear}
+         puts "the room is full and #{person.name} stays at the bar instead"
+         gate = false
       else
         person.cash -= 10
         @bar.float += 10
@@ -50,13 +53,13 @@ end
 
 def fav_song_is_playing(person, random_song)
     if random_song == person.fav_song
-       return "woo hoo, i love this song"
+       return "woo hoo, #{person.name}'s fav song #{random_song} is playing"
     else
-       return "sits down quietly"
+       return "#{person.name} sits down quietly"
     end
 end
 
-def drinking(person, no_of_drinks)
+def drinking(person, no_of_drinks, room_number)
     drinks_price = 5
     if no_of_drinks == 1
        person.cash -= 5
@@ -88,7 +91,8 @@ def drinking(person, no_of_drinks)
             person.stomach += 6
             @bar.float += 30
             emergency = Ambulance.new(person.name)
-            return "oh no #{emergency.drunken_mess} has been rushed to hospital"
+            person_leaves_room(person,room_number)
+            return "paraletic and has been rushed to hospital"
           elsif no_of_drinks == 0
             return "you are sensible"
           elsif no_of_drinks <= -1
@@ -98,7 +102,8 @@ def drinking(person, no_of_drinks)
             emergency = Ambulance.new(person.name)
             @bar.float += total
             person.cash -= total
-            return "oh no #{emergency.drunken_mess} has been rushed to hospital"
+            person_leaves_room(person,room_number)
+            return "paraletic and has been rushed to hospital"
     end
 
 

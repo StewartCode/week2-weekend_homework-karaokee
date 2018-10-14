@@ -1,4 +1,4 @@
-require_relative("room")
+#require_relative("room")
  class Bar
 
   attr_reader :float, :ticket_no_array, :drinks_stock

@@ -6,7 +6,7 @@ class TestPerson < MiniTest::Test
 
 
 def setup
-    @person = Person.new( "bob smith", "toto - africa", 100)
+    @person = Person.new( "bob smith", "toto - africa", 100, 0)
 end
 
 

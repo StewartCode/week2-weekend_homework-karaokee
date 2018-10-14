@@ -1,4 +1,4 @@
-require_relative("room")
+#require_relative("room")
  class Ambulance
 
   attr_reader :drunken_mess

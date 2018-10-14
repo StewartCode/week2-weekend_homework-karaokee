@@ -1,4 +1,4 @@
-require_relative("room")
+#require_relative("room")
  class Person
 
   attr_reader :name, :fav_song, :cash, :stomach
