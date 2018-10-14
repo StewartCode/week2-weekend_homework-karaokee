@@ -23,7 +23,7 @@ class TestRoom < MiniTest::Test
     @person8 = Person.new("captain hook", "rod stewart - we are sailing", 1000, 0)
     @person9 = Person.new("jimmy cranky", "gary glitter - come on", 1000, 0)
     @person10 = Person.new("ray meirs", "abba - dancing queen", 1000, 0)
-    @room = Room.new([[],[],[],[]],@song, @bar1)
+    @room = Room.new([[],[],[],[]],@song, @bar1, @ambulance)
   end
 
 
@@ -106,7 +106,7 @@ end
 
 def test_drinking_levels
     result = @room.drinking(@person1, 6, @bar1.ticket_no_array[0])
-    assert_equal("paraletic and has been rushed to hospital", result)
+    assert_equal("paralytic and has been rushed to hospital", result)
 end
 
 def test_more_than_6_drinks_being_bought

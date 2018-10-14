@@ -4,13 +4,14 @@ require("pry")
 
 class Room
 
-  attr_reader :room_array, :songs_array, :bar
-  attr_writer :room_array, :songs_array, :bar
+  attr_reader :room_array, :songs_array, :bar, :ambulance
+  attr_writer :room_array, :songs_array, :bar, :ambulance
 
-  def initialize(room_array, songs_array, bar)
+  def initialize(room_array, songs_array, bar, ambulance)
      @room_array = room_array
      @songs_array = songs_array
      @bar = bar
+     @ambulance = ambulance
   end
 
 def person_enters_room(person, room)
@@ -90,20 +91,20 @@ def drinking(person, no_of_drinks, room_number)
             person.cash -= 30
             person.stomach += 6
             @bar.float += 30
-            emergency = Ambulance.new(person.name)
+            @emergency = Ambulance.new(person.name)
             person_leaves_room(person,room_number)
-            return "paraletic and has been rushed to hospital"
+            return "paralytic and has been rushed to hospital"
           elsif no_of_drinks == 0
             return "you are sensible"
           elsif no_of_drinks <= -1
             return "erm, what!"
           else
             total = drinks_price * no_of_drinks
-            emergency = Ambulance.new(person.name)
+            @emergency = Ambulance.new(person.name)
             @bar.float += total
             person.cash -= total
             person_leaves_room(person,room_number)
-            return "paraletic and has been rushed to hospital"
+            return "paralytic and has been rushed to hospital"
     end
 
 
